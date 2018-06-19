@@ -1,0 +1,10 @@
+import requests
+from lxml import etree
+file='C:\Users\ASUS\Desktop'
+re=requests.get('http://www.17k.com/list/2822387.html')
+tree=etree.HTML(re.text)
+a= tree.xpath('//div/dl[@class="Volume"]/dd/a')
+for i in a:
+    b=i.xpath("./@href")[0]
+    c=('http://www.17k.com'+b)
+    content=requests.get(c).text
